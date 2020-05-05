@@ -13,8 +13,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
-import com.google.gson.internal.Streams;
-import com.google.gson.internal.bind.JsonTreeReader;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
@@ -156,6 +154,8 @@ public class GsonPolymorphAdapter implements TypeAdapterFactory {
 				adapterByName.put(name, t);
 			});
 
+			var jsonElementAdapter = gson.getAdapter(JsonElement.class);
+
 			return new TypeAdapter<T>() {
 
 				@Override
@@ -184,7 +184,7 @@ public class GsonPolymorphAdapter implements TypeAdapterFactory {
 					case TYPE_PROPERTY:
 						JsonElement tree = adapterByClass.get(value.getClass()).toJsonTree(value);
 						tree.getAsJsonObject().addProperty(typePropertyName, name);
-						Streams.write(tree, out);
+						jsonElementAdapter.write(out, tree);
 						break;
 					default:
 						throw new IllegalArgumentException();
@@ -215,10 +215,10 @@ public class GsonPolymorphAdapter implements TypeAdapterFactory {
 						return (T) result;
 					}
 					case TYPE_PROPERTY:
-						JsonObject tree = Streams.parse(in).getAsJsonObject();
+						JsonObject tree = jsonElementAdapter.read(in).getAsJsonObject();
 						String name = tree.get(typePropertyName).getAsString();
 						tree.remove(typePropertyName);
-						return (T) getAdapter(adapterByName, name, type).read(new JsonTreeReader(tree));
+						return (T) getAdapter(adapterByName, name, type).fromJsonTree(tree);
 					default:
 						throw new IllegalArgumentException();
 					}
