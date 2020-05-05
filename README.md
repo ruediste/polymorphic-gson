@@ -2,6 +2,9 @@
 
 For a high level overview refer to my [blog](https://ruediste.github.io/java/gson/2020/04/29/polymorphic-json-with-gson.html).
 
+![Compile and Test](https://github.com/ruediste/polymorphic-gson/workflows/Compile%20and%20Test/badge.svg)
+![Maven Central](https://img.shields.io/maven-central/v/com.github.ruediste/polymorphic-gson?style=plastic)
+
 ## Usage
 Refer to the maven artifact
 
@@ -9,7 +12,7 @@ Refer to the maven artifact
 <dependency>
 	<groupId>com.github.ruediste</groupId>
 	<artifactId>polymorphic-gson</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>...</version>
 </dependency>
 ```
 
