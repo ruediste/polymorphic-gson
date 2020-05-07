@@ -3,7 +3,7 @@
 For a high level overview refer to my [blog](https://ruediste.github.io/java/gson/2020/04/29/polymorphic-json-with-gson.html).
 
 ![Compile and Test](https://github.com/ruediste/polymorphic-gson/workflows/Compile%20and%20Test/badge.svg)
-![Maven Central](https://img.shields.io/maven-central/v/com.github.ruediste/polymorphic-gson?style=plastic)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ruediste/polymorphic-gson/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ruediste/polymorphic-gson)
 
 ## Usage
 Refer to the maven artifact
